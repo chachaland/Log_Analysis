@@ -1,18 +1,25 @@
 #!/usr/bin/env python3
 
+import sys
 import psycopg2
 
 
-DBNAME = "news"
+def connect(DBNAME):
+    """Connect to the PostgreSQL database. Returns a database connection"""
+    try:
+        db = psycopg2.connect("dbname={}".format(DBNAME))
+        cursor = db.cursor()
+        return db, cursor
+    except psycopg2.Error as e:
+        print("Unable to connect to database")
+        sys.exit(1)
 
 
-def run_query(query):
+def run_query(query, db, cursor):
     """run_query: running a query with psql using psycopg2"""
-    db = psycopg2.connect(database=DBNAME)
     cursor = db.cursor()
     cursor.execute(query)
     results = cursor.fetchall()
-    db.close()
     return results
 
 
@@ -82,9 +89,12 @@ query_3 = '''
 
 
 if __name__ == "__main__":
-    results_1 = run_query(query_1)
+    DBNAME = "news"
+    db, cursor = connect(DBNAME)
+    results_1 = run_query(query_1, db, cursor)
     result_text(question_1, results_1, 'views')
-    results_2 = run_query(query_2)
+    results_2 = run_query(query_2, db, cursor)
     result_text(question_2, results_2, 'views')
-    results_3 = run_query(query_3)
+    results_3 = run_query(query_3, db, cursor)
     result_text(question_3, results_3, "%")
+    db.close()
