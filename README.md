@@ -22,6 +22,7 @@ This project sets up a mock PostgreSQL database for a fictional news website. Th
 curl https://raw.githubusercontent.com/udacity/fullstack-nanodegree-vm/master/vagrant/Vagrantfile
 ```
 *This file is required to launch Vagrant VM*
+
 3. Download and unzip the [newsdata.zip](https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip)
 4. Copy the `newsdata.sql` file from the zip file you downloaded into the repository
 
