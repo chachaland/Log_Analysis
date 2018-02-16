@@ -16,4 +16,4 @@ vagrant@vagrant:/vagrant$ python3 log_analysis.py
 
 3. On which days did more than 1% of requests lead to errors?
 
-     1)  July     17,2016 ---- 2.26 %
+     1)  July 17, 2016 ---- 2.26 %
